@@ -87,9 +87,11 @@ function getUrlParameter(name) {
   function fill_table(team1, team2){
     let home_t = document.getElementById("home_hit");
     let away_t = document.getElementById("away_hit");
-    for(let i = 0; i < 9; i++){
-      home_t += `<td><tr>${team1[i]}</tr></td>`;
-      away_t += `<td><tr>${team2[i]}</tr></td>`;
+    for(let i = 0; i < team1.length; i++){
+      home_t.innerHTML += `<tr><td>${team1[i]}</td></tr>`;
+    }
+    for(let j = 0;j < team2.length; j++){
+      away_t.innerHTML += `<tr><td>${team2[j]}</td></tr>`;
     }
   }
       

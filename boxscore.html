@@ -6,17 +6,23 @@
 </head>
 <body>
   <h1>Box Score</h1>
-  <table id="boxscore">
+  <table>
     <thead>
       <tr>
-        <th id = "score"></th>
-        <th id = "home_hit"></th>
-        <th id = "away_hit"></th>
-        <th id = "home_pitch"></th>
-        <th id = "away_pitch">Away</th>
+        <th>Home Team</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id = "home_hit">
+      <!-- Data will be dynamically added here -->
+    </tbody>
+  </table>
+  <table>
+    <thead>
+      <tr>
+        <th>Away Team</th>
+      </tr>
+    </thead>
+    <tbody id = "away_hit">
       <!-- Data will be dynamically added here -->
     </tbody>
   </table>
