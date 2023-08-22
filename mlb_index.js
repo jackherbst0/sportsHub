@@ -7,9 +7,39 @@ const options = {
 	}
 };
 
+const gameOdds = {};
+
 function onGameClick(gameID) {
   // Redirect to game_details.html with the selected game ID as a URL parameter
   window.location.href = `boxscore.html?gameID=${encodeURIComponent(gameID)}`;
+}
+
+
+async function fetchOdds() {
+	const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBBettingOdds?gameDate=20230822';
+	const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': 'c8f0ee833fmsh72e4fb4da268b7ap1db8f6jsn6c6324d38e14',
+		'X-RapidAPI-Host': 'tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com'
+	}
+};
+	try{
+		const response = await fetch(url, options);
+		const data = await response.json();
+		console.log(data);
+		for(const gameKey in data.body){
+			const game = data.body[gameKey];
+			const oddsInfo = {
+				home: game.bet365.homeTeamMLOdds,
+				away: game.bet365.awayTeamMLOdds
+			  };
+			gameOdds[gameKey] = oddsInfo;
+		}
+	} catch (error) {
+		console.error(error);
+	}
+	console.log("Complete");
 }
 
 async function fetchMLBScores() { // Using Tank01 MLB Live In-Game Real Time Statistics rapidAPI
@@ -32,9 +62,10 @@ async function fetchMLBScores() { // Using Tank01 MLB Live In-Game Real Time Sta
         <tr onclick="onGameClick('${gameKey}')">
 					<td>${awayTeam} vs ${homeTeam}</td>
 					<td>Not Started Yet</td>
-					<td>${homeTeam}</td>
-					<td>${awayTeam}</td>
-					<td> 0 - 0 </td>
+					<td>${homeTeam} (${gameOdds[gameKey].home})</td>
+					<td>${awayTeam} (${gameOdds[gameKey].away})</td>
+					<td> 0</td>
+					<td> 0</td>
 				</tr>
 			`;
       }
@@ -45,9 +76,10 @@ async function fetchMLBScores() { // Using Tank01 MLB Live In-Game Real Time Sta
 				<tr onclick="onGameClick('${gameKey}')">
 					<td>${awayTeam} vs ${homeTeam}</td>
 					<td>${status}</td>
-					<td>${homeTeam}</td>
-					<td>${awayTeam}</td>
-					<td>${homeScore} - ${awayScore}</td>
+					<td>${homeTeam} (${gameOdds[gameKey].home})</td>
+					<td>${awayTeam} (${gameOdds[gameKey].away})</td>
+					<td> ${homeScore}</td>
+					<td> ${awayScore}</td>
 				</tr>
 			`;
       }
@@ -58,9 +90,13 @@ async function fetchMLBScores() { // Using Tank01 MLB Live In-Game Real Time Sta
 	}
 }
 
-// Initial call to fetch data
-fetchMLBScores();
+fetchOdds().then(() => {
+	// After odds data is fetched, fetch MLB scores data
+	fetchMLBScores();
 
 // Schedule updates every 30 seconds
 const updateInterval = 864000; // 30 seconds in milliseconds
 setInterval(fetchMLBScores, updateInterval);
+}).catch(error => {
+	console.error("Error fetching odds data:", error);
+});
