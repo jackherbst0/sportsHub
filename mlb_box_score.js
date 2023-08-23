@@ -32,7 +32,7 @@ function getUrlParameter(name) {
       const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': 'b970d8ed23msh2ccbcd4e16452b3p165e74jsn24c7bd047f92',
+        'X-RapidAPI-Key': 'c8f0ee833fmsh72e4fb4da268b7ap1db8f6jsn6c6324d38e14',
         'X-RapidAPI-Host': 'tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com'
       }
       };
@@ -87,7 +87,7 @@ function getUrlParameter(name) {
       const options = {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': 'b970d8ed23msh2ccbcd4e16452b3p165e74jsn24c7bd047f92',
+          'X-RapidAPI-Key': 'c8f0ee833fmsh72e4fb4da268b7ap1db8f6jsn6c6324d38e14',
           'X-RapidAPI-Host': 'tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com'
           }
       };
@@ -95,8 +95,11 @@ function getUrlParameter(name) {
         const response = await fetch(url, options);
         const data = await response.json();
         console.log(data);
-        const playerName = data.body.longName;
-        return data.body.longName;
+        const playerData = {
+          name: data.body.longName,
+          photo: data.body.espnHeadshot
+        };
+        return playerData;
       } catch (error) {
         console.error(`Error fetching player name for ID ${playerID}:`, error);
       }
@@ -113,7 +116,7 @@ function getUrlParameter(name) {
       for (const id in team1_info){
         home_t.innerHTML += `
           <tr>
-          <td>${team1_names[home_i]}</td>
+          <td>${team1_names[home_i].name}<img class="player-photo" src="${team1_names[home_i].photo}" alt="photo"></td>
           <td>${team1_info[id].hitting.H || 0}</td>
           <td>${team1_info[id].hitting.AB || 0}</td>
           <td>${team1_info[id].hitting.RBI || 0}</td>
@@ -126,7 +129,7 @@ function getUrlParameter(name) {
       for (const id in team2_info){
         away_t.innerHTML += `
           <tr>
-          <td>${team2_names[away_i]}</td>
+          <td>${team2_names[away_i].name}<img class="player-photo" src="${team2_names[away_i].photo}" alt="photo"></td>
           <td>${team2_info[id].hitting.H || 0}</td>
           <td>${team2_info[id].hitting.AB || 0}</td>
           <td>${team2_info[id].hitting.RBI || 0}</td>
