@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const options = {
 	    method: 'GET',
 	    headers: {
-		    'X-RapidAPI-Key': 'c8f0ee833fmsh72e4fb4da268b7ap1db8f6jsn6c6324d38e14',
+		    'X-RapidAPI-Key': 'b970d8ed23msh2ccbcd4e16452b3p165e74jsn24c7bd047f92',
 		    'X-RapidAPI-Host': 'tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com'
 	        }
         };
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             for(const headline in data.body){
                 const slides = document.getElementById("slideshow");
                 const h = data.body[headline];
-                slides.innerHTML = `
+                slides.innerHTML += `
                 <div class = "slide">
                     <a href="${h.link}">
                         <img src="${h.image}" alt="Slide">
