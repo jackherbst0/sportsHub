@@ -94,7 +94,6 @@ function getUrlParameter(name) {
       try {
         const response = await fetch(url, options);
         const data = await response.json();
-        console.log(data);
         const playerData = {
           name: data.body.longName,
           photo: data.body.espnHeadshot

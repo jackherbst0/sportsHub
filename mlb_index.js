@@ -39,7 +39,6 @@ async function fetchOdds() {
 	} catch (error) {
 		console.error(error);
 	}
-	console.log("Complete");
 }
 
 async function fetchMLBScores() { // Using Tank01 MLB Live In-Game Real Time Statistics rapidAPI
