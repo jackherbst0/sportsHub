@@ -2,7 +2,7 @@ const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com
 const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': 'c8f0ee833fmsh72e4fb4da268b7ap1db8f6jsn6c6324d38e14',
+		'X-RapidAPI-Key': 'b970d8ed23msh2ccbcd4e16452b3p165e74jsn24c7bd047f92',
 		'X-RapidAPI-Host': 'tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com'
 	}
 };
@@ -16,11 +16,11 @@ function onGameClick(gameID) {
 
 
 async function fetchOdds() {
-	const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBBettingOdds?gameDate=20230822';
+	const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBBettingOdds?gameDate=20230823';
 	const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': 'c8f0ee833fmsh72e4fb4da268b7ap1db8f6jsn6c6324d38e14',
+		'X-RapidAPI-Key': 'b970d8ed23msh2ccbcd4e16452b3p165e74jsn24c7bd047f92',
 		'X-RapidAPI-Host': 'tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com'
 	}
 };
@@ -31,8 +31,8 @@ async function fetchOdds() {
 		for(const gameKey in data.body){
 			const game = data.body[gameKey];
 			const oddsInfo = {
-				home: game.bet365.homeTeamMLOdds,
-				away: game.bet365.awayTeamMLOdds
+				home: game.caesars_sportsbook.homeTeamMLOdds,
+				away: game.caesars_sportsbook.awayTeamMLOdds
 			  };
 			gameOdds[gameKey] = oddsInfo;
 		}
@@ -59,7 +59,7 @@ async function fetchMLBScores() { // Using Tank01 MLB Live In-Game Real Time Sta
       if(status == 'Not Started Yet'){
         row += `
         <tr onclick="onGameClick('${gameKey}')">
-					<td>${awayTeam} vs ${homeTeam}</td>
+					<td>${awayTeam} at ${homeTeam}</td>
 					<td>Not Started Yet</td>
 					<td>${homeTeam} (${gameOdds[gameKey].home})</td>
 					<td>${awayTeam} (${gameOdds[gameKey].away})</td>
@@ -73,7 +73,7 @@ async function fetchMLBScores() { // Using Tank01 MLB Live In-Game Real Time Sta
       	const awayScore = game.lineScore.away.R;
         row += `
 				<tr onclick="onGameClick('${gameKey}')">
-					<td>${awayTeam} vs ${homeTeam}</td>
+					<td>${awayTeam} at ${homeTeam}</td>
 					<td>${status}</td>
 					<td>${homeTeam} (${gameOdds[gameKey].home})</td>
 					<td>${awayTeam} (${gameOdds[gameKey].away})</td>

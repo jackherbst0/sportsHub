@@ -1,15 +1,22 @@
+function onGClick(gameID) {
+    // Redirect to game_details.html with the selected game ID as a URL parameter
+    window.location.href = `sportshub_player_props.html?gameID=${encodeURIComponent(gameID)}`;
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
+
     const matchups = {};
 
     async function fetchAllOdds() {
         const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBBettingOdds?gameDate=20230703&playerProps=true';
         const options = {
-	    method: 'GET',
-	    headers: {
-	    	'X-RapidAPI-Key': 'b970d8ed23msh2ccbcd4e16452b3p165e74jsn24c7bd047f92',
-	    	'X-RapidAPI-Host': 'tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com'
-	    }
-    };
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': 'b970d8ed23msh2ccbcd4e16452b3p165e74jsn24c7bd047f92',
+                'X-RapidAPI-Host': 'tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com'
+            }
+        };
     try{
         const response = await fetch(url, options);
         const data = await response.json();
@@ -17,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let i = 0;
         for(const game in data.body){
             const info = data.body[game];
-            matchupInfo = {
+            let matchupInfo = {
                 home: info.homeTeam,
                 away: info.awayTeam,
                 line: info.caesars_sportsbook.totalUnder,
@@ -30,27 +37,29 @@ document.addEventListener('DOMContentLoaded', () => {
             matchups[i] = matchupInfo;
             i += 1;
         }
+        createMatchups(matchups);
     } catch (error) {
         console.error(error);
     }
 }
 
-    function createMatchupElement(matchup) {
-        const matchupElement = document.createElement('div');
-        matchupElement.classList.add('matchup');
-        matchupElement.innerHTML = `
-            <a href="${matchup.playerPropsLink}">
-                <h2>${matchup.teams}</h2>
-                <p>Over/Under: ${matchup.overUnder}</p>
-                <p>Moneyline: ${matchup.moneyline}</p>
-            </a>
+    function createMatchups(matchups) {
+        const tableBody = document.querySelector('#scoreboard tbody');
+        tableBody.innerHTML = '';
+        for (const matchup in matchups){
+            let row = ``;
+            row += `
+            <tr onclick="onGClick('${matchups[matchup].gameID}')">
+                <td>${matchups[matchup].away} at ${matchups[matchup].home}</td>
+                <td>${matchups[matchup].home_ML}</td>
+                <td>${matchups[matchup].away_ML}</td>
+                <td>${matchups[matchup].u_odds}</td>
+                <td>${matchups[matchup].line}</td>
+                <td>${matchups[matchup].o_odds}</td>
         `;
-        return matchupElement;
+            tableBody.innerHTML += row;
+        }
     }
+    fetchAllOdds();
 
-    const matchupList = document.getElementById('matchup-list');
-    matchups.forEach(matchup => {
-        const matchupElement = createMatchupElement(matchup);
-        matchupList.appendChild(matchupElement);
-    });
 });
