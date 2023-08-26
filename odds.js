@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const matchups = {};
 
     async function fetchAllOdds() {
-        const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBBettingOdds?gameDate=20230703&playerProps=true';
+        const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBBettingOdds?gameDate=20230826&playerProps=true';
         const options = {
             method: 'GET',
             headers: {

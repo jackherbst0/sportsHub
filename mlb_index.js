@@ -16,7 +16,7 @@ function onGameClick(gameID) {
 
 
 async function fetchOdds() {
-	const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBBettingOdds?gameDate=20230823';
+	const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBBettingOdds?gameDate=20230826';
 	const options = {
 	method: 'GET',
 	headers: {
