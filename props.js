@@ -7,29 +7,31 @@ const props = {};
 
 const gameID = getUrlParameter('gameID');
   
-  document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchProps(){
-        const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBBettingOdds?gameDate=20230826&playerProps=true';
+        const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBBettingOdds?gameDate=20230828&playerProps=true';
         const options = {
 	        method: 'GET',
 	        headers: {
-	        	'X-RapidAPI-Key': 'b970d8ed23msh2ccbcd4e16452b3p165e74jsn24c7bd047f92',
+	        	'X-RapidAPI-Key': 'c8f0ee833fmsh72e4fb4da268b7ap1db8f6jsn6c6324d38e14',
 	        	'X-RapidAPI-Host': 'tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com'
 	        }
         };
         try{
             const response = await fetch(url, options);
             const data = await response.json();
+            console.log(data);
             for (const player in data.body[gameID].playerProps){
-                const props = data.body[gameID].playerProps[player];
+                const playerProps = data.body[gameID].playerProps[player];
+                const playerName = await getName(playerProps.playerID);
                 const propinfo = {
-                    id: getName(props.playerID),
-                    hits: props.propBets.hits,
-                    bases: props.propBets.bases,
-                    rbi: props.propBets.rbis,
-                    runs: props.propBets.runs,
-                    hr: props.propBets.homeruns
+                    id: playerName,
+                    hits: playerProps.propBets.hits,
+                    bases: playerProps.propBets.bases,
+                    rbi: playerProps.propBets.rbis,
+                    runs: playerProps.propBets.runs,
+                    hr: playerProps.propBets.homeruns
                 };
                 props[propinfo.id] = propinfo;
             }
@@ -44,7 +46,7 @@ const gameID = getUrlParameter('gameID');
         const options = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': 'b970d8ed23msh2ccbcd4e16452b3p165e74jsn24c7bd047f92',
+                'X-RapidAPI-Key': 'c8f0ee833fmsh72e4fb4da268b7ap1db8f6jsn6c6324d38e14',
                 'X-RapidAPI-Host': 'tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com'
             }
         };
@@ -60,16 +62,34 @@ const gameID = getUrlParameter('gameID');
 
     function fill_props(){
         let props_table = document.getElementById('props');
-        for (const player in props){
+        for (const player in props) {
+            const currentPlayer = props[player];
+    
+            const hitsOne = currentPlayer.hits?.one || 'N/A';
+            const basesTotal = currentPlayer.bases?.total || 'N/A';
+            const basesOver = currentPlayer.bases?.over || 'N/A';
+            const basesUnder = currentPlayer.bases?.under || 'N/A';
+            const hrOne = currentPlayer.hr?.one || 'N/A';
+            const runsTotal = currentPlayer.runs?.total || 'N/A';
+            const runsOver = currentPlayer.runs?.over || 'N/A';
+            const runsUnder = currentPlayer.runs?.under || 'N/A';
+            const rbiOne = currentPlayer.rbi?.one || 'N/A';
+    
             props_table.innerHTML += `
-              <tr>
-              <td>${props[player].id}</td>
-              <td>${props[player].hits}</td>
-              <td>${props[player].bases}</td>
-              <td>${props[player].hrs}</td>
-              <td>${props[player].runs}</td>
-              <td>${props[player].rbis}</td>
-              </tr>`;
-          }
+                <tr>
+                <td>${currentPlayer.id || 'N/A'}</td>
+                <td>Over 0.5: ${hitsOne}</td>
+                <td>Total: ${basesTotal}
+                Over: ${basesOver}
+                Under: ${basesUnder}</td>
+                <td>${hrOne}</td>
+                <td>Total: ${runsTotal}
+                Over: ${runsOver}
+                Under: ${runsUnder}
+                </td>
+                <td>${rbiOne}</td>
+                </tr>`;
+        }
     }
-  });
+    fetchProps();
+});
