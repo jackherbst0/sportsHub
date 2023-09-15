@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #333;
+}
+
+.position-icons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.position {
+    cursor: pointer;
+}
+
+.position img {
+    width: 100px;
+    height: 100px;
+}
+
+.player-display {
+    margin-top: 20px;
+}
+
+#selected-player {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+/* Style the container for position icons */
+.position-icons {
+    text-align: center;
+}
+
+/* Style QB */
+#qb {
+    background-color: #FFD700; /* Gold */
+    border: 2px solid #000; /* Black */
+    padding: 10px;
+    font-size: 24px;
+    display: inline-block;
+    margin: 10px;
+}
+
+/* Style RB */
+#rb1, #rb2 {
+    background-color: #008000; /* Green */
+    border: 2px solid #000; /* Black */
+    padding: 10px;
+    font-size: 24px;
+    display: inline-block;
+    margin: 10px;
+}
+
+/* Style WR */
+#wr1, #wr2, #wr3 {
+    background-color: #FFA500; /* Orange */
+    border: 2px solid #000; /* Black */
+    padding: 10px;
+    font-size: 24px;
+    display: inline-block;
+    margin: 10px;
+}
+
+/* Style TE */
+#te {
+    background-color: #800080; /* Purple */
+    border: 2px solid #000; /* Black */
+    padding: 10px;
+    font-size: 24px;
+    display: inline-block;
+    margin: 10px;
+}
+
+/* Style K */
+#k {
+    background-color: #FF4500; /* Red-Orange */
+    border: 2px solid #000; /* Black */
+    padding: 10px;
+    font-size: 24px;
+    display: inline-block;
+    margin: 10px;
+}
+
+/* Style DST */
+#dst {
+    background-color: #000080; /* Navy */
+    border: 2px solid #000; /* Black */
+    padding: 10px;
+    font-size: 24px;
+    display: inline-block;
+    margin: 10px;
+}

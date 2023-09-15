@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Football Draft</title>
+    <link rel="stylesheet" href="draft_style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="draft.js"></script>
+</head>
+<body>
+    <h1>Fantasy Football Draft</h1>
+    <div id = "score_div">
+      <h2>Your Score</h2>
+      <p id="score"></p>
+    </div>
+
+    <!-- Position icons -->
+    <div class="position-icons">
+         <H1>QB</H1>
+        <div class="position" id="qb">
+           <img src="qb.png" alt="Quarterback">
+        </div>
+        <H1>RB1</H1><br>
+        <div class="position" id="rb1">
+            <img src="rb.jpg" alt="Running Back" >
+         </div>
+         <H1>RB2</H1><br>
+         <div class="position" id="rb2">
+            <img src="rb.jpg" alt="Running Back">
+         </div>
+         <H1>WR1</H1><br>
+         <div class="position" id="wr1">
+            <img src="wr.png" alt="Wide Receiver">
+         </div>
+         <H1>WR2</H1><br>
+         <div class="position" id="wr2">
+            <img src="wr.png" alt="Wide Receiver">
+         </div>
+         <H1>WR3</H1><br>
+         <div class="position" id="wr3">
+            <img src="wr.png" alt="Wide Receiver">
+         </div>
+         <H1>TE</H1><br>
+         <div class="position" id="te">
+            <img src="te.png" alt="Tight End">
+         </div>
+    </div>
+    <div class="position-icons">
+      <H1>K</H1><br>
+         <div class="position" id="k">
+            <img src="k.jpeg" alt="Kicker">
+         </div>
+         <H1>DST</H1><br>
+         <div class="position" id="dst">
+            <img src="dst.jpg" alt="Defense">
+         </div>
+    </div>
+
+    <!-- Player display area -->
+    <div class="player-display">
+        <img id="selected-player" src="" alt="Selected Player">
+        <div id="player-stats"></div>
+        <button id="continue">Continue</button>
+    </div>
+</body>
+</html>
