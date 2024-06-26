@@ -13,38 +13,38 @@ document.addEventListener('DOMContentLoaded', () => {
     let qb_data, rb_data, wr_data, te_data, k_data, dst_data;
 
     const team_photos = {
-        Arizona Cardinals
-        Atlanta Falcons
-        Baltimore Ravens
-        Buffalo Bills
-        Carolina Panthers
-        Chicago Bears
-        Cincinnati Bengals
-        Cleveland Browns
-        Dallas Cowboys
-        Denver Broncos
-        Detroit Lions
-        Green Bay Packers
-        Houston Texans
-        Indianapolis Colts
-        Jacksonville Jaguars
-        Kansas City Chiefs
-        Las Vegas Raiders
-        Los Angeles Chargers
-        Los Angeles Rams
-        Miami Dolphins
-        Minnesota Vikings
-        New England Patriots
-        New Orleans Saints
-        New York Giants
-        New York Jets
-        Philadelphia Eagles
-        Pittsburgh Steelers
-        San Francisco 49ers
-        Seattle Seahawks
-        Tampa Bay Buccaneers
-        Tennessee Titans
-        Washington Commanders
+        "Arizona Cardinals": './team_photos/cardinals.png',
+        "Atlanta Falcons": './team_photos/falcons.png',
+        "Baltimore Ravens": './team_photos/ravens.jpg',
+        "Buffalo Bills": './team_photos/bills.jpg',
+        "Carolina Panthers": './team_photos/panthers.png',
+        "Chicago Bears": './team_photos/bears.png',
+        "Cincinnati Bengals": './team_photos/bengals.png',
+        "Cleveland Browns": './team_photos/browns.jpg',
+        "Dallas Cowboys": './team_photos/cowboys.jpg',
+        "Denver Broncos": './team_photos/broncos.jpg',
+        "Detroit Lions": './team_photos/lions.jpg',
+        "Green Bay Packers": './team_photos/packers.jpeg',
+        "Houston Texans": './team_photos/texans.jpeg',
+        "Indianapolis Colts": './team_photos/colts.jpg',
+        "Jacksonville Jaguars": './team_photos/jaguars.png',
+        "Kansas City Chiefs": './team_photos/chiefs.jpg',
+        "Las Vegas Raiders": './team_photos/raiders.png',
+        "Los Angeles Chargers": './team_photos/chargers.jpg',
+        "Los Angeles Rams": './team_photos/rams.png',
+        "Miami Dolphins": './team_photos/dolphins.png',
+        "Minnesota Vikings": './team_photos/vikings.jpg',
+        "New England Patriots": './team_photos/patriots.png',
+        "New Orleans Saints": './team_photos/saints.png',
+        "New York Giants": './team_photos/giants.jpg',
+        "New York Jets": './team_photos/jets.png',
+        "Philadelphia Eagles": './team_photos/eagles.jpg',
+        "Pittsburgh Steelers": './team_photos/steelers.jpeg',
+        "San Francisco 49ers": './team_photos/niners.jpg',
+        "Seattle Seahawks": './team_photos/seahawks.png',
+        "Tampa Bay Buccaneers": './team_photos/buccaneers.jpg',
+        "Tennessee Titans": './team_photos/titans.png',
+        "Washington Commanders": './team_photos/commanders.png'
     }
 
     function handlePositionIconClick(position) {
@@ -238,18 +238,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     const playerStatsDiv = document.getElementById('player-stats');
                     playerStatsDiv.innerHTML = `${stats.name} in week ${stats.week} scored ${stats.points}`;
 
-                    if (current_pos === 'rb1') {
+                    if (current_pos == 'rb1') {
                         scores.rb[0] = stats.points;
-                    } else if (current_pos === 'rb2') {
+                    } else if (current_pos == 'rb2') {
                         scores.rb[1] = stats.points;
                     }
                     
                     // Update wr1, wr2, and wr3 scores
-                    if (current_pos === 'wr1') {
+                    if (current_pos == 'wr1') {
                         scores.wr[0] = stats.points;
-                    } else if (current_pos === 'wr2') {
+                    } else if (current_pos == 'wr2') {
                         scores.wr[1] = stats.points;
-                    } else if (current_pos === 'wr3') {
+
+                    } else if (current_pos == 'wr3') {
                         scores.wr[2] = stats.points;
                     }
                     else{
@@ -264,7 +265,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             else{
-                console.log(stats.name);
+                const playerImage = document.getElementById('selected-player');
+                playerImage.src = team_photos[stats.name];
+                playerImage.alt = 'Defense';
+                const playerStatsDiv = document.getElementById('player-stats');
+                playerStatsDiv.innerHTML = `${stats.name} in week ${stats.week} scored ${stats.points}`;
+                scores.dst = stats.points;
             }
         } catch (error) {
             console.error("Error fetching photo:", error.message);

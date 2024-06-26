@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Game Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: center;
+      padding: 8px;
+    }
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+    .player-photo {
+    max-width: 40px; /* Adjust the max width to your preference */
+    max-height: 40px; /* Adjust the max height to your preference */
+    display: block;
+    margin: auto; /* Center the images horizontally within cells */
+    border-radius: 50%; /* Add rounded corners for a nicer appearance */
+  }
+  </style>
+  <script src="mlb_box_score.js"></script>
+</head>
+<body>
+  <h1>Box Score</h1>
+  <div class="tabs">
+    <button id="offenseTab" onclick="showStats('offense')">Offense</button>
+    <button id="defenseTab" onclick="showStats('defense')">Defense</button>
+  </div>
+  <table id="home">
+    <thead>
+    </thead>
+    <tbody id = "home_stats">
+      <!-- Data will be dynamically added here -->
+    </tbody>
+  </table>
+  <table id="away">
+    <thead>
+    </thead>
+    <tbody id = "away_stats">
+      <!-- Data will be dynamically added here -->
+    </tbody>
+  </table>
+</body>
+</html>

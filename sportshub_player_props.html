@@ -2,7 +2,55 @@
 <html>
 <head>
   <title>Game Details</title>
-  <script src="props.js"></script>
+  <script src="mlb_props.js"></script>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        }
+
+        /* Header styles */
+        h1 {
+        text-align: center;
+        margin-top: 20px;
+        }
+
+        /* Table styles */
+        table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        }
+
+        th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+        }
+
+        thead {
+        background-color: #f2f2f2;
+        }
+
+        /* Row styles */
+        tr:hover {
+        background-color: #f5f5f5;
+        }
+
+        /* Cell styles */
+        td[colspan="3"] {
+        text-align: center;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 600px) {
+        td[colspan="3"] {
+            display: block;
+            text-align: left;
+        }
+        }
+  </style>
 </head>
 <body>
   <h1>Player Props</h1>
@@ -12,9 +60,9 @@
         <th>Name</th>
         <th>Hits</th>
         <th>Bases</th>
-        <th>HRs</th>
+        <th>HR</th>
         <th>Runs</th>
-        <th>RBIs</th>
+        <th>RBI</th>
       </tr>
     </thead>
     <tbody id = "props">

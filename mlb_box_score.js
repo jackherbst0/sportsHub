@@ -14,12 +14,6 @@ function getUrlParameter(name) {
     const team2_hit = {};
     const team1_pitch = {};
     const team2_pitch = {};
-    const hit_names1 = {};
-    const hit_names2 = {};
-    const pitch_names1 = {};
-    const pitch_names2 = {};
-    var names1 = [];
-    var names2 = [];
     var c1 = 0;
     var c2 = 0;
     const team1_hit_ids = [];
@@ -87,7 +81,7 @@ function getUrlParameter(name) {
       const options = {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': 'b970d8ed23msh2ccbcd4e16452b3p165e74jsn24c7bd047f92',
+          'X-RapidAPI-Key': 'c8f0ee833fmsh72e4fb4da268b7ap1db8f6jsn6c6324d38e14',
           'X-RapidAPI-Host': 'tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com'
           }
       };

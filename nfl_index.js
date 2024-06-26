@@ -1,4 +1,4 @@
-const url = 'https://tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com/getNFLScoresOnly?gameDate=20230108';
+const url = 'https://tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com/getNFLScoresOnly?gameDate=20230910';
 const options = {
 	method: 'GET',
 	headers: {
@@ -16,7 +16,7 @@ function onGameClick(gameID) {
 
 
 async function fetchOdds() {
-	const url = 'https://tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com/getNFLBettingOdds?gameDate=20230108';
+	const url = 'https://tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com/getNFLBettingOdds?gameDate=20230910';
 	const options = {
 	method: 'GET',
 	headers: {

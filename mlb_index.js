@@ -1,8 +1,8 @@
-const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBScoresOnly';
+const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBScoresOnly?gameDate=20230828';
 const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': 'b970d8ed23msh2ccbcd4e16452b3p165e74jsn24c7bd047f92',
+		'X-RapidAPI-Key': 'c8f0ee833fmsh72e4fb4da268b7ap1db8f6jsn6c6324d38e14',
 		'X-RapidAPI-Host': 'tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com'
 	}
 };
@@ -11,16 +11,16 @@ const gameOdds = {};
 
 function onGameClick(gameID) {
   // Redirect to game_details.html with the selected game ID as a URL parameter
-  window.location.href = `boxscore.html?gameID=${encodeURIComponent(gameID)}`;
+  window.location.href = `mlb_boxscore.html?gameID=${encodeURIComponent(gameID)}`;
 }
 
 
 async function fetchOdds() {
-	const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBBettingOdds?gameDate=20230826';
+	const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBBettingOdds?gameDate=20230828';
 	const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': 'b970d8ed23msh2ccbcd4e16452b3p165e74jsn24c7bd047f92',
+		'X-RapidAPI-Key': 'c8f0ee833fmsh72e4fb4da268b7ap1db8f6jsn6c6324d38e14',
 		'X-RapidAPI-Host': 'tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com'
 	}
 };
